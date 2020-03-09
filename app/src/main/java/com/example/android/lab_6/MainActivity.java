@@ -34,6 +34,7 @@ public class MainActivity extends FragmentActivity {
             mMap=googleMap;
             // display marker
             googleMap.addMarker(new MarkerOptions().position(mDestinationLatLng).title("Destination Aus"));
+            displayMyLocation();
         });
 
         mFusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this);
@@ -47,6 +48,7 @@ public class MainActivity extends FragmentActivity {
         if(permission== PackageManager.PERMISSION_DENIED){
             ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
         }
         // if permission granted, display marker at current location
         else{
@@ -65,7 +67,7 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    public void onRequestPermissionResult(int requestCode,
+    public void onRequestPermissionsResult(int requestCode,
                                           @NonNull String[] permissions,
                                           @NonNull int[] grantResults){
         if(requestCode==PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION){
